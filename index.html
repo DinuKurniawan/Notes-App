@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes App</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <h1>Notes App</h1>
+        <div class="topbar-actions">
+          <button id="themeToggle" class="btn ghost" type="button">🌙 Dark</button>
+          <button id="layoutToggle" class="btn ghost" type="button">Grid</button>
+        </div>
+      </header>
+
+      <main class="content">
+        <section class="panel create-panel">
+          <h2>New Note</h2>
+          <form id="noteForm" class="note-form">
+            <input id="titleInput" name="title" type="text" maxlength="120" placeholder="Title" required />
+            <textarea id="contentInput" name="content" rows="5" placeholder="Write your note..." required></textarea>
+            <div class="row">
+              <label for="colorInput">Color</label>
+              <input id="colorInput" name="color" type="color" value="#fef3c7" />
+            </div>
+            <input id="tagsInput" name="tags" type="text" placeholder="Tags (comma separated)" />
+            <textarea
+              id="checklistInput"
+              name="checklist"
+              rows="3"
+              placeholder="Checklist items (one per line)"
+            ></textarea>
+            <button class="btn primary" type="submit">Save Note</button>
+          </form>
+        </section>
+
+        <section class="panel notes-panel">
+          <div class="filters">
+            <input id="searchInput" type="search" placeholder="Search title/content/tag..." />
+            <select id="tagFilter">
+              <option value="">All tags</option>
+            </select>
+            <select id="statusFilter">
+              <option value="all">All</option>
+              <option value="active">Active</option>
+              <option value="pinned">Pinned</option>
+              <option value="archived">Archived</option>
+            </select>
+            <select id="sortBy">
+              <option value="updatedAt-desc">Newest updated</option>
+              <option value="updatedAt-asc">Oldest updated</option>
+              <option value="title-asc">Title A-Z</option>
+              <option value="title-desc">Title Z-A</option>
+              <option value="createdAt-desc">Newest created</option>
+              <option value="createdAt-asc">Oldest created</option>
+            </select>
+          </div>
+
+          <div id="notesContainer" class="notes-grid" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="./dist/index.js"></script>
+  </body>
+</html>

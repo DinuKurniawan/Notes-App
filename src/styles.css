@@ -1,0 +1,267 @@
+:root {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #4f46e5;
+  --accent-text: #ffffff;
+  --danger: #dc2626;
+  --control-bg: #ffffff;
+  --control-text: #111827;
+}
+
+body.dark {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --border: #334155;
+  --accent: #6366f1;
+  --accent-text: #ffffff;
+  --danger: #ef4444;
+  --control-bg: #0b1220;
+  --control-text: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.16), transparent 35%),
+    radial-gradient(circle at 85% 10%, rgba(14, 165, 233, 0.14), transparent 30%),
+    radial-gradient(circle at 70% 85%, rgba(236, 72, 153, 0.1), transparent 32%),
+    var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.app-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.topbar-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1rem;
+}
+
+.panel {
+  background: color-mix(in oklab, var(--panel) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+}
+
+.note-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--control-bg);
+  color: var(--control-text);
+}
+
+select option {
+  background: var(--control-bg);
+  color: var(--control-text);
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid color-mix(in oklab, var(--accent) 55%, transparent);
+  outline-offset: 1px;
+}
+
+.row {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.btn {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: var(--accent-text);
+  border-color: var(--accent);
+}
+
+.btn.danger {
+  color: var(--danger);
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.filters {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr;
+  margin-bottom: 0.9rem;
+}
+
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.notes-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+}
+
+.note-card {
+  --note-text: var(--text);
+  --note-muted: var(--muted);
+  --note-border: color-mix(in oklab, var(--note-text) 22%, transparent);
+  --note-btn-bg: color-mix(in oklab, var(--note-text) 10%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.5rem;
+  color: var(--note-text);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+.note-card p {
+  margin: 0;
+  color: var(--note-text);
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.note-title {
+  margin: 0;
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  font-size: 0.8rem;
+  color: var(--note-muted);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  border: 1px solid var(--note-border);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.75rem;
+  color: var(--note-text);
+  background: var(--note-btn-bg);
+}
+
+.note-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.checklist {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0.2rem 0;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+}
+
+.check-item input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: var(--accent);
+}
+
+.check-item .done {
+  text-decoration: line-through;
+  opacity: 0.75;
+}
+
+.note-card .btn {
+  border-color: var(--note-border);
+  color: var(--note-text);
+  background: var(--note-btn-bg);
+}
+
+.note-card .btn.danger {
+  color: #b91c1c;
+  background: color-mix(in oklab, #fecaca 55%, transparent);
+  border-color: color-mix(in oklab, #b91c1c 36%, transparent);
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 1rem;
+}
+
+@media (max-width: 900px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
+  }
+}
