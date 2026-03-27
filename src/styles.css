@@ -50,18 +50,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.8rem;
   margin-bottom: 1rem;
 }
 
 .topbar-actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
+  justify-content: flex-end;
 }
 
 .content {
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 1rem;
+  align-items: start;
 }
 
 .panel {
@@ -143,6 +147,32 @@ textarea:focus {
   margin-bottom: 0.9rem;
 }
 
+.stats-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.stat-chip {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.82rem;
+  background: color-mix(in oklab, var(--panel) 88%, transparent);
+}
+
+.bulk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.bulk-actions[hidden] {
+  display: none;
+}
+
 .notes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -181,6 +211,18 @@ textarea:focus {
   gap: 0.6rem;
 }
 
+.note-header-main {
+  display: flex;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+
+.note-select {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.2rem;
+}
+
 .note-title {
   margin: 0;
   font-size: 1rem;
@@ -190,6 +232,11 @@ textarea:focus {
 .meta {
   font-size: 0.8rem;
   color: var(--note-muted);
+}
+
+.meta.overdue {
+  color: #b91c1c;
+  font-weight: 600;
 }
 
 .tags {
@@ -250,18 +297,119 @@ textarea:focus {
   border-color: color-mix(in oklab, #b91c1c 36%, transparent);
 }
 
+.snooze-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.snooze-actions .btn {
+  padding: 0.32rem 0.56rem;
+  font-size: 0.78rem;
+}
+
 .empty {
   text-align: center;
   color: var(--muted);
   padding: 1rem;
 }
 
+@media (max-width: 1100px) {
+  .content {
+    grid-template-columns: 280px 1fr;
+  }
+
+  .filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .notes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
 @media (max-width: 900px) {
+  .app-shell {
+    padding: 0.75rem;
+  }
+
   .content {
     grid-template-columns: 1fr;
   }
 
   .filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .panel {
+    padding: 0.85rem;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .topbar h1 {
+    margin: 0;
+  }
+
+  .topbar-actions {
+    justify-content: flex-start;
+  }
+
+  .topbar-actions .btn {
+    flex: 1 1 calc(33.333% - 0.5rem);
+    min-width: 110px;
+  }
+
+  .notes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .filters {
     grid-template-columns: 1fr;
+  }
+
+  .stats-panel {
+    gap: 0.4rem;
+  }
+
+  .stat-chip {
+    font-size: 0.78rem;
+  }
+
+  .topbar-actions .btn {
+    flex: 1 1 calc(50% - 0.5rem);
+    min-width: 0;
+  }
+
+  .bulk-actions .btn {
+    flex: 1 1 calc(50% - 0.45rem);
+  }
+
+  .note-actions .btn,
+  .snooze-actions .btn {
+    flex: 1 1 calc(50% - 0.4rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .app-shell {
+    padding: 0.55rem;
+  }
+
+  .panel {
+    border-radius: 12px;
+    padding: 0.75rem;
+  }
+
+  .topbar-actions .btn,
+  .bulk-actions .btn,
+  .note-actions .btn,
+  .snooze-actions .btn {
+    flex: 1 1 100%;
   }
 }

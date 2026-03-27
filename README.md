@@ -4,13 +4,22 @@ A modern Notes App built with **TypeScript**, focused on clean logic, responsive
 
 ## Features
 
-- Create, edit, delete notes (CRUD)
+- Create, edit, trash, restore, and permanently delete notes
 - Auto-save to `localStorage`
 - Pin and archive notes
 - Custom note color and tags
 - Checklist per note (one item per line, can be checked/unchecked)
+- Due date and reminder per note
+- Recurring reminder (`daily` / `weekly`)
+- Reminder snooze (`5m` / `10m` / `30m`)
+- Undo/redo note state changes (including keyboard shortcuts)
+- Export notes as readable text (`.txt`) and import backup (`.json`)
+- Bulk actions for selected notes (archive/trash/restore/delete permanently)
+- Trash auto-cleanup (older than 30 days)
+- Stats panel (total, active, archived, pinned, overdue, trashed)
+- PWA-ready (manifest + service worker offline cache)
 - Search by title/content/tag
-- Filter by tag and status (`all`, `active`, `pinned`, `archived`)
+- Filter by tag and status (`all`, `active`, `pinned`, `archived`, `trashed`)
 - Sort notes (updated date, created date, title)
 - Grid/list layout toggle
 - Dark mode toggle

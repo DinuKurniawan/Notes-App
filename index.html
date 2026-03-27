@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4f46e5" />
     <title>Notes App</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
@@ -11,6 +13,11 @@
       <header class="topbar">
         <h1>Notes App</h1>
         <div class="topbar-actions">
+          <button id="exportButton" class="btn ghost" type="button">Export</button>
+          <button id="importButton" class="btn ghost" type="button">Import</button>
+          <input id="importFileInput" type="file" accept="application/json" hidden />
+          <button id="undoButton" class="btn ghost" type="button">Undo</button>
+          <button id="redoButton" class="btn ghost" type="button">Redo</button>
           <button id="themeToggle" class="btn ghost" type="button">🌙 Dark</button>
           <button id="layoutToggle" class="btn ghost" type="button">Grid</button>
         </div>
@@ -33,6 +40,33 @@
               rows="3"
               placeholder="Checklist items (one per line)"
             ></textarea>
+            <div class="row">
+              <label for="dueDateInput">Due date</label>
+              <input id="dueDateInput" name="dueDate" type="date" />
+            </div>
+            <div class="row">
+              <label for="dueTimeInput">Due time</label>
+              <input id="dueTimeInput" name="dueTime" type="time" />
+            </div>
+            <div class="row">
+              <label for="reminderOffsetInput">Reminder</label>
+              <select id="reminderOffsetInput" name="reminderOffset">
+                <option value="none">No reminder</option>
+                <option value="0">At due time</option>
+                <option value="5">5 minutes before</option>
+                <option value="15">15 minutes before</option>
+                <option value="60">1 hour before</option>
+                <option value="1440">1 day before</option>
+              </select>
+            </div>
+            <div class="row">
+              <label for="recurrenceInput">Repeat</label>
+              <select id="recurrenceInput" name="recurrence">
+                <option value="none">No repeat</option>
+                <option value="daily">Daily</option>
+                <option value="weekly">Weekly</option>
+              </select>
+            </div>
             <button class="btn primary" type="submit">Save Note</button>
           </form>
         </section>
@@ -48,6 +82,7 @@
               <option value="active">Active</option>
               <option value="pinned">Pinned</option>
               <option value="archived">Archived</option>
+              <option value="trashed">Trashed</option>
             </select>
             <select id="sortBy">
               <option value="updatedAt-desc">Newest updated</option>
@@ -58,6 +93,8 @@
               <option value="createdAt-asc">Oldest created</option>
             </select>
           </div>
+          <div id="statsPanel" class="stats-panel" aria-live="polite"></div>
+          <div id="bulkActions" class="bulk-actions"></div>
 
           <div id="notesContainer" class="notes-grid" aria-live="polite"></div>
         </section>
